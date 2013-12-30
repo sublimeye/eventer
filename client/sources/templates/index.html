@@ -3,13 +3,25 @@
 <head>
     <meta charset="utf-8">
     <title>Eventer</title>
-    <link rel="stylesheet" href="/build/index.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
 </head>
 <body>
-    <h1>Eventer2</h1>
+    <h1>Eventer  { Static: '/client/build' }
+        <!-- @if NODE_ENV == 'DEVELOPMENT' -->
+            DEV
+        <!-- @endif -->
+        <!-- @if NODE_ENV == 'PRODUCTION' -->
+            PROD
+        <!-- @endif -->
+    </h1>
 
+    <!-- @if NODE_ENV == 'DEVELOPMENT' -->
+        <script src="/js/vendor/require.js" data-main="/js/app/index.js"></script>
+    <!-- @endif -->
 
+    <!-- @if NODE_ENV == 'PRODUCTION' -->
+        <script src="/js/index.min.js" ></script>
+    <!-- @endif -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
 </body>
 </html>

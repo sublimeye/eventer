@@ -4,22 +4,16 @@
 var express = require('express');
 var app = express();
 
-//CORS middleware
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-    next();
-};
+var oneDay = 86400000;
 
 app.configure(function() {
+    app.use(express.compress());
     app.use(express.bodyParser());
-    app.use(allowCrossDomain);
+    app.use(express.static(__dirname + '/../client/build-dev', {maxAge: oneDay}));
 });
 
 app.post('/hey', function(req, res) {
-	res.send({data: 100});
+	res.send({data: 30000});
 });
 
 app.listen(3000);
