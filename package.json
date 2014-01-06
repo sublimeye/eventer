@@ -45,5 +45,8 @@
     "grunt-preprocess": "4.0.0",
     "grunt-env": "0.4.1",
     "grunt-express": "1.2.1"
+  },
+  "dependencies": {
+    "passport": "~0.1.17"
   }
 }
