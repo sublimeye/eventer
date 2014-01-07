@@ -1,5 +1,8 @@
-require(['jquery', 'app/home/auth'], function ($, auth) {
-    $(function () { 
+require(['home/auth'], function ($, auth) {
+	alert('index.js');
+
+/*
+    $(function () {
         $.ajax({
             type: 'GET',
             url: '/user/name',
@@ -12,4 +15,5 @@ require(['jquery', 'app/home/auth'], function ($, auth) {
             }
         });
     });
+*/
 });

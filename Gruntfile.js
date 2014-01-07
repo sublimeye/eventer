@@ -119,6 +119,11 @@ module.exports = function (grunt) {
                     { expand: true, cwd: '<%= fontsDir %>', src: ['**'], dest: '<%= buildDevDir %>/fonts/' }
                 ]
             },
+	        scripts: {
+		        files: [
+			        { expand: true, cwd: '<%= scriptsDir %>', src: ['**'], dest: '<%= buildDevDir %>/js/' }
+		        ]
+	        },
             prod: {
                 files: [
                     // how to copy new images that generated during dev?
@@ -308,7 +313,7 @@ karma: {
         watch: {
             scripts: {
                 files: '<%= userScripts %>',
-                tasks: ['requirejs:dev']
+                tasks: ['copy:scripts']
             },
 
             styles: {
@@ -381,8 +386,7 @@ karma: {
         'env:prod',
         'clean:prod',
         'preprocess:prod',
-        'copy:prod',
-        '_compile:prod'
+        'copy:prod'
     ]);
 
     grunt.registerTask('server', 'Server side nodejs developemnt tasks', [

@@ -1,0 +1,22 @@
+{
+  "name": "Eventer",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sublimeye/eventer",
+  "authors": [
+    "Roman Morozov <romo@ciklum.com>"
+  ],
+  "description": "Eventer app",
+  "main": "index.html",
+  "keywords": [
+    "eventer"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
