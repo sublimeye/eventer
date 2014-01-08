@@ -1,13 +1,16 @@
 require.config({
-	deps: ['angular'],
-	baseUrl: './js',
 	paths: {
-		angular: 'vendor/angular/angular',
-		jquery: 'vendor/jquery/jquery'
+		angular: '../vendor/angular/angular',
+		jquery: '../vendor/jquery/jquery',
+		domReady: '../vendor/requirejs-domready/domReady'
 	},
+	priority: [
+		"angular"
+	],
 	shim: {
-		'model': {
-			exports: "model"
+		angular: {
+			exports: 'angular'
 		}
-	}
+	},
+	deps: []
 });

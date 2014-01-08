@@ -119,11 +119,6 @@ module.exports = function(grunt) {
 					{ expand: true, cwd: '<%= fontsDir %>', src: ['**'], dest: '<%= buildDevDir %>/fonts/' }
 				]
 			},
-			scripts: {
-				files: [
-					{ expand: true, cwd: '<%= scriptsDir %>', src: ['**'], dest: '<%= buildDevDir %>/js/' }
-				]
-			},
 			prod: {
 				files: [
 					// how to copy new images that generated during dev?
@@ -135,6 +130,13 @@ module.exports = function(grunt) {
 			}
 		},
 
+		sync: {
+			scripts: {
+				files: [
+					{ expand: true, cwd: '<%= scriptsDir %>', src: ['**'], dest: '<%= buildDevDir %>/js/' }
+				]
+			}
+		},
 		/* Metrics configuration */
 		jshint: {
 			all: {
@@ -191,13 +193,22 @@ module.exports = function(grunt) {
 		},
 		/* r.js optimizer configuration: https://github.com/jrburke/r.js/blob/master/build/example.build.js */
 		requirejs: {
+
+			//
+			// @ requirejs:dev Deprecated
+
+			// Don't use "dev" requirejs, it's too slow and useless.
+			// There is no need in any concatenation or min during development
+			// Use simple file sync and browser/client based r.js
+			//
 			dev: {
 				options: {
 					mainConfigFile: '<%=scriptsAppDir%>/require_config.js',
-					baseUrl: '<%=scriptsDir%>',
-					name: 'app/index',
+					baseUrl: '<%=scriptsAppDir%>',
+					name: 'index',
 					dir: '<%= buildDevDir %>/js',
 					optimize: 'none',
+					optimizeCss: 'none',
 
 					//Finds require() dependencies inside a require() or define call. By default
 					//this value is false, because those resources should be considered dynamic/runtime
@@ -217,11 +228,12 @@ module.exports = function(grunt) {
 			prod: {
 				options: {
 					mainConfigFile: '<%=scriptsAppDir%>/require_config.js',
-					baseUrl: '<%=scriptsDir%>',
-					name: 'app/index',
+					baseUrl: '<%=scriptsAppDir%>',
+					name: 'index',
 					out: '<%=buildProdDir%>/js/index.min.js',
-					optimize: 'uglify2',
-					include: ['vendor/require'],
+					// TODO: Configure ngmin tool to "safely" uglify sources. Otherwise AngularJS DI fails.
+					optimize: 'none',
+					include: ['../vendor/requirejs/require'],
 
 					//Finds require() dependencies inside a require() or define call. By default
 					//this value is false, because those resources should be considered dynamic/runtime
@@ -313,7 +325,7 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: '<%= userScripts %>',
-				tasks: ['copy:scripts']
+				tasks: ['sync:scripts']
 			},
 
 			styles: {
@@ -327,8 +339,9 @@ module.exports = function(grunt) {
 			},
 
 			options: {
-				debounceDelay: 200,
-				atBegin: true
+				debounceDelay: 50,
+				atBegin: true,
+				nospawn: true
 				//livereload: true
 			}
 
@@ -377,7 +390,6 @@ module.exports = function(grunt) {
 		'preprocess:dev',
 		'copy:dev',
 		'concurrent:dev'
-//        'watch'
 		// tests
 	]);
 
@@ -386,11 +398,9 @@ module.exports = function(grunt) {
 		'env:prod',
 		'clean:prod',
 		'preprocess:prod',
-		'copy:prod'
-	]);
-
-	grunt.registerTask('server', 'Server side nodejs developemnt tasks', [
-		'concurrent:dev'
+		'copy:prod',
+		'requirejs:prod',
+		'nodemon' // TODO: nodemon is not a production task, only to run srv and test;
 	]);
 
 	grunt.registerTask('default', ['work']);
@@ -411,17 +421,7 @@ module.exports = function(grunt) {
 	 * @link: http://stackoverflow.com/questions/16612495/continue-certain-tasks-in-grunt-even-if-one-fails/16972894
 	 */
 	var previous_force_state = grunt.option("force");
-	grunt.registerTask("force", function(set) {
-		if (set === "on") {
-			grunt.option("force", true);
-		}
-		else if (set === "off") {
-			grunt.option("force", false);
-		}
-		else if (set === "restore") {
-			grunt.option("force", previous_force_state);
-		}
-	});
+	grunt.registerTask("force", function(set) { if (set === "on") { grunt.option("force", true); } else if (set === "off") { grunt.option("force", false); } else if (set === "restore") { grunt.option("force", previous_force_state); } });
 
 	/**
 	 * Load all grunt-* tasks from the package.json

@@ -1,6 +1,8 @@
 /**
  * Created by romo on 12/13/13.
  */
+var buildFolder = (process.env.NODE_ENV === 'PRODUCTION') ? 'build' : 'build-dev';
+
 var express = require('express');
 var app = express();
 var oneDay = 86400000;
@@ -21,10 +23,11 @@ app.configure(function() {
 	app.use(express.compress());
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
-	app.use(express.static(__dirname + '/../client/build-dev', {maxAge: oneDay}));
+	app.use(express.static(__dirname + '/../client/' + buildFolder, {maxAge: oneDay}));
 	app.use('/templates', express.static(__dirname + '/../client/sources/templates', {maxAge: 1}));
 	app.use(express.session({ store: mongoStore(app.set('db-uri')), secret: 'topsecret' }));
 });
+
 
 models.defineModels(mongoose, function() {
 	app.User = User = mongoose.model('User');
