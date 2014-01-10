@@ -1,6 +1,13 @@
 module.exports = function(grunt) {
 
-//    require('time-grunt')(grunt); // Displays the elapsed execution time of grunt tasks when done
+	var serverConfig = require('./server/config');
+    require('time-grunt')(grunt); // Displays the elapsed execution time of grunt tasks when done
+	require('jit-grunt')(grunt);
+	/**
+	 * Load all grunt-* tasks from the package.json
+	 */
+//	require('load-grunt-tasks')(grunt, {pattern: 'grunt-*'});
+
 
 	var config = {
 		/**
@@ -112,11 +119,7 @@ module.exports = function(grunt) {
 		copy: {
 			dev: {
 				files: [
-					// how to copy new images that generated during dev?
-					// Copy images
-					{ expand: true, cwd: '<%= imagesDir %>', src: ['**'], dest: '<%= buildDevDir %>/images/' },
-					// Copy fonts
-					{ expand: true, cwd: '<%= fontsDir %>', src: ['**'], dest: '<%= buildDevDir %>/fonts/' }
+						// @deprecated; replaced with sync:dev
 				]
 			},
 			prod: {
@@ -134,6 +137,16 @@ module.exports = function(grunt) {
 			scripts: {
 				files: [
 					{ expand: true, cwd: '<%= scriptsDir %>', src: ['**'], dest: '<%= buildDevDir %>/js/' }
+				]
+			},
+			images: {
+				files: [
+					{ expand: true, cwd: '<%= imagesDir %>', src: ['**'], dest: '<%= buildDevDir %>/images/' }
+				]
+			},
+			fonts: {
+				files: [
+					{ expand: true, cwd: '<%= fontsDir %>', src: ['**'], dest: '<%= buildDevDir %>/fonts/' }
 				]
 			}
 		},
@@ -186,7 +199,7 @@ module.exports = function(grunt) {
 					imagesDir: '<%=imagesDir%>',
 					fontsDir: '<%=fontsDir%>',
 					cssDir: '<%=buildDevDir%>/css',
-					environment: 'development',
+					environment: 'production',
 					force: true
 				}
 			}
@@ -312,9 +325,9 @@ module.exports = function(grunt) {
 
 		// grunt-open will open your browser at the project's URL
 		open: {
-			all: {
+			index: {
 				// Gets the port from the connect configuration
-				path: 'http://localhost:<%= express.all.options.port %>'
+				path: 'http://'+serverConfig.vhost+'/'
 			},
 			'serverDebug': {
 				path: 'http://127.0.0.1:9999/debug?port=5858'
@@ -333,16 +346,26 @@ module.exports = function(grunt) {
 				tasks: ['compass:dev']
 			},
 
-			indexhtml: {
+			html: {
 				files: ['<%=templatesDir%>/index.html'],
 				tasks: ['preprocess:dev']
 			},
 
+			images: {
+				files: '<%= imagesDir %>',
+				tasks: ['sync:images']
+			},
+
+			fonts: {
+				files: '<%= fontsDir %>',
+				tasks: ['sync:fonts']
+			},
+
 			options: {
-				debounceDelay: 50,
+				debounceDelay: 100,
 				atBegin: true,
-				nospawn: true
-				//livereload: true
+				livereload: true,
+				spawn: false
 			}
 
 			// run unit tests with karma (server needs to be already running)
@@ -357,7 +380,7 @@ module.exports = function(grunt) {
 				logConcurrentOutput: true
 			},
 			dev: {
-				tasks: ['watch', 'nodemon']
+				tasks: ['watch', 'nodemon', 'open:index']
 			},
 			debug: {
 				tasks: ['watch', 'nodemon', 'node-inspector', 'open:serverDebug']
@@ -384,11 +407,9 @@ module.exports = function(grunt) {
 	};
 
 	grunt.registerTask('work', [
-		// --- client ---
 		'env:dev',
 		'clean:dev',
 		'preprocess:dev',
-		'copy:dev',
 		'concurrent:dev'
 		// tests
 	]);
@@ -422,10 +443,5 @@ module.exports = function(grunt) {
 	 */
 	var previous_force_state = grunt.option("force");
 	grunt.registerTask("force", function(set) { if (set === "on") { grunt.option("force", true); } else if (set === "off") { grunt.option("force", false); } else if (set === "restore") { grunt.option("force", previous_force_state); } });
-
-	/**
-	 * Load all grunt-* tasks from the package.json
-	 */
-	require('load-grunt-tasks')(grunt, {pattern: 'grunt-*'});
 
 };

@@ -7,7 +7,7 @@ define([
 	'use strict';
 
 	window.HelloCntl = function($scope) {
-		$scope.name = 'World update me';
+		$scope.name = 'Input name';
 	};
 
 	// Declare app level module which depends on filters, and services
