@@ -1,15 +1,14 @@
 /**
  * Created by romo on 1/7/14.
  */
-define([
-	'angular'
-], function(ng) {
+define(function(require, exports, module) {
 	'use strict';
+	var ng = require('angular');
+	var angularRoute = require('angularRoute');
 
 	window.HelloCntl = function($scope) {
 		$scope.name = 'Input name';
 	};
 
-	// Declare app level module which depends on filters, and services
-	return ng.module('app', []);
+	module.exports = ng.module('app', ['ngRoute']);
 });
