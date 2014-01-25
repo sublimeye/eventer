@@ -1,16 +1,16 @@
 require.config({
-	paths: {
-		angular: '../vendor/angular/angular',
-		jquery: '../vendor/jquery/jquery',
-		domReady: '../vendor/requirejs-domready/domReady'
-	},
-	priority: [
-		"angular"
-	],
-	shim: {
-		angular: {
-			exports: 'angular'
-		}
-	},
-	deps: []
+    paths: {
+        angular: '../vendor/angular/angular',
+        angularRoute: '../vendor/angular-route/angular-route',
+        jquery: '../vendor/jquery/jquery'
+    },
+    priority: [
+        "angular"
+    ],
+    shim: {
+        angular: {
+            exports: 'angular'
+        }
+    },
+    deps: []
 });
