@@ -12,7 +12,6 @@
   "author": "Roman Morozov <sublimeye.ua@gmail.com>",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "load-grunt-tasks": "~0.2.0",
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-contrib-csslint": "~0.1.2",
