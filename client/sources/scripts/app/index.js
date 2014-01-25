@@ -12,20 +12,25 @@ require.config({
 	baseUrl: '/js/app',
 	paths: {
 		angular: '../vendor/angular/angular',
-		jquery: '../vendor/jquery/jquery',
-		domReady: '../vendor/requirejs-domready/domReady'
+		angularRoute: '../vendor/angular-route/angular-route',
+		jquery: '../vendor/jquery/jquery'
 	},
 	priority: [
 		"angular"
 	],
 	shim: {
-		angular: {
-			exports: 'angular'
-		}
+		angular: {exports: 'angular'},
+		'angularRoute': ['angular']
 	},
 	deps: []
 });
 
-require(['domReady!', 'angular', 'app'], function(document, ng) {
-	ng.bootstrap(document, ['app']);
+define(function(require, exports, module) {
+	var ng = require('angular');
+	var app = require('app');
+	var router = require('router');
+
+	ng.element(document.getElementsByTagName('html')[0]).ready(function() {
+		ng.bootstrap(document, ['app']);
+	});
 });

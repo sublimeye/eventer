@@ -6,7 +6,7 @@
 		<!-- @if NODE_ENV == 'PRODUCTION' --> PROD<!-- @endif -->: Eventer</title>
 	<link rel="stylesheet" href="/css/index.css"/>
 </head>
-<body>
+<body ng-view="app">
 	<h1>Eventer Environment: <!-- @if NODE_ENV == 'DEVELOPMENT' --> DEV<!-- @endif -->		<!-- @if NODE_ENV == 'PRODUCTION' --> PROD<!-- @endif --></h1>
 
 	<div ng-controller="HelloCntl">
@@ -14,6 +14,8 @@
 		<hr/>
 		Hello {{name || "World"}}!
 	</div>
+
+	<div ng-view></div>
 
 	<div>
 		<a href="/auth/google">Sign In with Google</a>
