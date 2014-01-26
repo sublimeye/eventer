@@ -25,7 +25,7 @@ require.config({
 	deps: []
 });
 
-define(function(require, exports, module) {
+define(function(require) {
 	var ng = require('angular');
 	var app = require('app');
 	var router = require('router');

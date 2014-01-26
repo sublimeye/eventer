@@ -214,7 +214,7 @@ module.exports = function(grunt) {
 			// There is no need in any concatenation or min during development
 			// Use simple file sync and browser/client based r.js
 			//
-			dev: {
+			'deprecated@dev': {
 				options: {
 					mainConfigFile: '<%=scriptsAppDir%>/require_config.js',
 					baseUrl: '<%=scriptsAppDir%>',
