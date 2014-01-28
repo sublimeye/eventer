@@ -39,10 +39,10 @@ app.get('/auth/google/return',
 /* TEMPORARY AUTH CODE */
 
 // connect to the database
-mongoose.connect('mongodb://localhost/passport-example');
+/*mongoose.connect('mongodb://localhost/passport-example');
 
 // create a user model
 var User = mongoose.model('User', {
   oauthID: Number,
   name: String
-});
+});*/
