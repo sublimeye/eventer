@@ -5,7 +5,6 @@ var config = require('./conf/config');
 var network = require('./modules/network-common');
 var passportAuth = require('./modules/auth');
 var flash = require('connect-flash');
-var routes = require('routes');
 
 var app = express();
 
