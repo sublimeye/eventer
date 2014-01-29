@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-	var serverConfig = require('./server/config');
+	var serverConfig = require('./server/conf/config');
 //  require('time-grunt')(grunt); // Displays the elapsed execution time of grunt tasks when done
 	require('jit-grunt')(grunt);
 	/**

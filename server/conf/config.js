@@ -4,5 +4,6 @@
 module.exports = {
 	buildDir: '/../client/' + ((process.env.NODE_ENV === 'PRODUCTION') ? 'build' : 'build-dev'),
 	port: 80,
-	vhost: 'eventer.web'
+	vhost: 'eventer.web',
+    db: 'mongodb://localhost:27017/eventer'
 };
