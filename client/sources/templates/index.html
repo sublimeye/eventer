@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><!-- @if NODE_ENV == 'DEVELOPMENT' --> DEV<!-- @endif -->
+		<!-- @if NODE_ENV == 'PRODUCTION' --> PROD<!-- @endif -->: Eventer</title>
+	<link rel="stylesheet" href="/css/index.css"/>
+</head>
+<body>
+	<header>
+		<nav class="b-auth">
+			<!-- if not logged: sign in  -->
+			<!-- if logged: 	sign out -->
+			<!--<a href="/auth/logout">Sign In with Google</a>-->
+			<li><a href="/auth/google">Sign In with Google</a></li>
+			<li><a href="/#feed">Feed</a></li>
+			<li><a href="/#profile">Profile</a></li>
+
+		</nav>
+	</header>
+
+	<section>
+		<h1>Eventer</h1>
+		<div ng-view></div>
+	</section>
+
+	<!-- @if NODE_ENV == 'DEVELOPMENT' -->
+	<script src="/js/vendor/requirejs/require.js" data-main="/js/app/index.js"></script>
+	<!-- @endif -->
+	<!-- @if NODE_ENV == 'PRODUCTION' -->
+	<script src="/js/index.min.js"></script>
+	<!-- @endif -->
+</body>
+</html>
