@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-	var serverConfig = require('./server/conf/config');
+	var serverConfig = require('./server/config/config');
 //  require('time-grunt')(grunt); // Displays the elapsed execution time of grunt tasks when done
 	require('jit-grunt')(grunt);
 	/**
@@ -104,6 +104,16 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+
+    html2js: {
+      options: {
+
+      },
+      main: {
+        src: [],
+        dest: ''
+      }
+    },
 
 		/**
 		 * Cleans or deletes our production folder before we create a new production build.

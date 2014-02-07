@@ -46,7 +46,8 @@
     "grunt-ngmin": "0.0.3",
     "grunt-sync": "0.0.5",
     "jit-grunt": "~0.1.2",
-    "colors": "~0.6.2"
+    "colors": "~0.6.2",
+    "grunt-html2js": "~0.2.4"
   },
   "dependencies": {
     "passport": "~0.1.17",

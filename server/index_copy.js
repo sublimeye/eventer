@@ -15,7 +15,7 @@ var oneDay = 86400000;
 var User = {};
 var mongoose = require('mongoose');
 var mongoStore = require('connect-mongodb');
-var models = require('./models');
+var models = require('./app/models');
 var db, LoginToken;
 
 var passport = require('passport'),
