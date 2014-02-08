@@ -107,13 +107,12 @@ module.exports = function (grunt) {
 
     html2js: {
       options: {
-        base: '<%= sourcesDir %>/templates'
+        base: '<%= templatesDir %>'
       },
-      dev: {
-        src: ['<%= sourcesDir %>/templates/partials/**/*.html'],
-        dest: '<%= buildDevDir %>/js/app/templates.js'
-      },
-      prod: {} // TODO: make config to build templates in prod and then include it with r.js
+      main: {
+        src: ['<%= templatesDir %>/partials/**/*.html'],
+        dest: '<%= scriptsAppDir %>/templates/templates.js'
+      }
     },
 
     /**
@@ -225,33 +224,9 @@ module.exports = function (grunt) {
       // There is no need in any concatenation or min during development
       // Use simple file sync and browser/client based r.js
       //
-      'deprecated@dev': {
-        options: {
-          mainConfigFile: '<%=scriptsAppDir%>/require_config.js',
-          baseUrl: '<%=scriptsAppDir%>',
-          name: 'index',
-          dir: '<%= buildDevDir %>/js',
-          optimize: 'none',
-          optimizeCss: 'none',
-
-          //Finds require() dependencies inside a require() or define call. By default
-          //this value is false, because those resources should be considered dynamic/runtime
-          //calls. However, for some optimization scenarios, it is desirable to
-          //include them in the build.
-          findNestedDependencies: true,
-          //If set to true, any files that were combined into a build bundle will be removed from the output folder.
-          removeCombined: true,
-          // the dir above will be deleted before the build starts again. If you have a big build and are not doing
-          // source transforms with onBuildRead/onBuildWrite, then you can
-          // set keepBuildDir to true to keep the previous dir.
-          keepBuildDir: true,
-          generateSourceMaps: false,
-          preserveLicenseComments: false
-        }
-      },
       prod: {
         options: {
-          mainConfigFile: '<%=scriptsAppDir%>/require_config.js',
+          mainConfigFile: '<%=scriptsAppDir%>/index.js',
           baseUrl: '<%=scriptsAppDir%>',
           name: 'index',
           out: '<%=buildProdDir%>/js/index.min.js',
@@ -364,7 +339,7 @@ module.exports = function (grunt) {
 
       templates: {
         files: ['<%=templatesDir%>/partials/**/*.html'],
-        tasks: ['html2js:dev']
+        tasks: ['html2js']
       },
 
       images: {
@@ -433,11 +408,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     // --- client ---
-    'env:prod',
-    'clean:prod',
-    'preprocess:prod',
-    'copy:prod',
-    'requirejs:prod',
+    'env:prod', // set prod environment
+    'clean:prod', // clean build dir
+    'preprocess:prod', // preprocess index.html
+    'copy:prod', // copy all non-convertible resources (img/fonts)
+    'html2js', // generate templates javascript file
+    'compass:prod', // generate styles
+    'requirejs:prod', // r.js
     'nodemon' // TODO: nodemon is not a production task, only to run srv and test;
   ]);
 
