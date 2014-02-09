@@ -1,14 +1,15 @@
 /* Loading dependencies */
 var mongoose = require('mongoose');
 var express = require('express');
+var passport = require('passport');
+var flash = require('connect-flash');
 var config = require('./config/config');
 var network = require('./modules/network-common');
-var passportAuth = require('./modules/auth');
-var flash = require('connect-flash');
 var app = express();
 
 /* connecting to database */
 mongoose.connect(config.db);
+require('./modules/auth')(passport);  // pass passport for auth configuration
 
 /* express application configuration */
 app.configure(function () {
@@ -18,8 +19,8 @@ app.configure(function () {
 
     // required for passport
     app.use(express.session({ secret: 'secret'}));
-    app.use(passportAuth.initialize());
-    app.use(passportAuth.session());
+    app.use(passport.initialize());
+    app.use(passport.session());
     app.use(flash());
 
     // handle static resources (images, styles, etc)
@@ -27,14 +28,13 @@ app.configure(function () {
 });
 
 /* Load routing rules */
-require('./app/routes')(app, passportAuth);
+require('./app/routes')(app, passport);
 
 /* Check if config.port is opened and Launch the server / start listening; */
 network.checkPortIsOpened(config.port, function () {
     express().use(express.vhost(config.vhost, app)).listen(config.port);
     console.log('Server running: http://' + config.vhost + '. (should be set in hosts file) On port: ' + config.port);
 });
-
 
 // create a user model
 /*
