@@ -375,7 +375,7 @@ module.exports = function (grunt) {
         tasks: ['watch', 'nodemon', 'open:index']
       },
       debug: {
-        tasks: ['watch', 'nodemon', 'node-inspector', 'open:serverDebug']
+        tasks: ['watch', 'nodemon', 'open:index', 'node-inspector', 'open:serverDebug']
       }
     },
 
@@ -402,7 +402,7 @@ module.exports = function (grunt) {
     'env:dev',
     'clean:dev',
     'preprocess:dev',
-    'concurrent:dev'
+    'concurrent:debug'
     // tests
   ]);
 
