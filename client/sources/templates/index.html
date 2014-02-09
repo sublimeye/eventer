@@ -8,27 +8,33 @@
 </head>
 <body>
 	<header>
-		<nav class="b-auth">
-			<!-- if not logged: sign in  -->
-			<!-- if logged: 	sign out -->
-			<!--<a href="/auth/logout">Sign In with Google</a>-->
-			<li><a href="/auth/google">Sign In with Google</a></li>
-			<li><a href="/#feed">Feed</a></li>
-			<li><a href="/#profile">Profile</a></li>
+    <div>
+      <a href="/auth/google">Sign In with Google</a>
+      <br/><br/>
+    </div>
+    <form action="/auth/login">
+      <input type="email" placeholder="Login (email)"/>
+      <input type="password" placeholder="Password"/>
+      <button type="submit">Sign In</button>
+    </form>
+    <div><a href="/auth/signup">Need an account? Sign up!</a></div>
+  </header>
 
-		</nav>
-	</header>
+  <section>
+    <h1>Eventer</h1>
 
-	<section>
-		<h1>Eventer</h1>
-		<div ng-view></div>
-	</section>
+    <nav class="b-main-menu">
+      <li><a href="/#feed">Feed</a></li>
+      <li><a href="/#profile">Profile</a></li>
 
-	<!-- @if NODE_ENV == 'DEVELOPMENT' -->
-	<script src="/js/vendor/requirejs/require.js" data-main="/js/app/index.js"></script>
-	<!-- @endif -->
-	<!-- @if NODE_ENV == 'PRODUCTION' -->
-	<script src="/js/index.min.js"></script>
-	<!-- @endif -->
+    </nav>
+    <div ng-view></div>
+  </section>
+
+  <!-- @if NODE_ENV == 'DEVELOPMENT' -->
+  <script src="/js/vendor/requirejs/require.js" data-main="/js/app/index.js"></script>
+  <!-- @endif -->  <!-- @if NODE_ENV == 'PRODUCTION' -->
+  <script src="/js/index.min.js"></script>
+  <!-- @endif -->
 </body>
 </html>

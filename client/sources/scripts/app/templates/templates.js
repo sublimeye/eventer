@@ -16,6 +16,6 @@ angular.module("partials/profile.html", []).run(["$templateCache", function($tem
     "<h2>Profile</h2>\n" +
     "\n" +
     "<div>\n" +
-    "	<p>Hi, %username% {{user}}</p>\n" +
+    "	<p>Hi, username: {{user}}</p>\n" +
     "</div>");
 }]);
