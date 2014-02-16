@@ -4,12 +4,11 @@
 define(function(require, exports, module) {
 	'use strict';
 	var ng = require('angular');
-	var angularRoute = require('angularRoute');
   var templates = require('templates');
+  var router = require('router');
+  var app;
 
-	window.HelloCntl = function($scope) {
-		$scope.name = 'Input name';
-	};
-
-	module.exports = ng.module('app', ['ngRoute', 'templates-main']);
+	app = ng.module('app', ['ui.router', 'templates-main']);
+  app.config(router);
+  module.exports = app;
 });

@@ -13,7 +13,7 @@ require.config({
   paths: {
     angular: '../vendor/angular/angular',
 //    angularRoute: '../vendor/angular-route/angular-route',
-    angularRoute: '../vendor/angular-ui-router/',
+    uiRouter: '../vendor/angular-ui-router/angular-ui-router',
     jquery: '../vendor/jquery/jquery',
     templates: 'templates/templates'
   },
@@ -22,7 +22,7 @@ require.config({
   ],
   shim: {
     angular: {exports: 'angular'},
-    angularRoute: ['angular'],
+    uiRouter: ['angular'],
     templates: ['angular']
   },
   deps: ['bootstrap']

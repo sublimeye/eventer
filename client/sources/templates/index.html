@@ -30,20 +30,10 @@
     </nav>
   </header>
 
-  <section>
-    <h1>Eventer</h1>
-
-    <nav class="b-main-menu">
-      <li><a href="/#feed">Feed</a></li>
-      <li><a href="/#profile">Profile</a></li>
-
-    </nav>
-    <div ng-view></div>
-  </section>
+  <section ui-view></section>
 
   <!-- @if NODE_ENV == 'DEVELOPMENT' -->
-  <script src="/js/vendor/requirejs/require.js" data-main="/js/app/ind\
-  ex.js"></script>
+  <script src="/js/vendor/requirejs/require.js" data-main="/js/app/index.js"></script>
   <!-- @endif -->  <!-- @if NODE_ENV == 'PRODUCTION' -->
   <script src="/js/index.min.js"></script>
   <!-- @endif -->

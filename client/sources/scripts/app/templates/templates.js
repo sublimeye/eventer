@@ -1,13 +1,25 @@
-angular.module('templates-main', ['partials/feed.html', 'partials/profile.html']);
+angular.module('templates-main', ['partials/home.html', 'partials/profile.html']);
 
-angular.module("partials/feed.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("partials/feed.html",
-    "<h2>Main feed</h2>\n" +
+angular.module("partials/home.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/home.html",
+    "<div class=\"container\">\n" +
+    "  <h1>Home</h1>\n" +
     "\n" +
-    "<div ng-controller=\"HelloCntl\">\n" +
-    "	Your name: <input type=\"text\" ng-model=\"name\"/>\n" +
-    "	<hr/>\n" +
-    "	Hello {{name || \"World\"}}!\n" +
+    "  <div class=\"well\">\n" +
+    "    Create an event and invite your friends\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"well\">\n" +
+    "    Search for cool events\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"well\">\n" +
+    "    Subscribe for interesting events\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"well\">\n" +
+    "    Find a good place: gym, rally track, surfing, etc\n" +
+    "  </div>\n" +
     "</div>");
 }]);
 
