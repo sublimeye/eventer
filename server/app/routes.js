@@ -3,87 +3,86 @@
  */
 module.exports = function (app, passport) {
 
-  // =====================================
-  // SIGNUP ==============================
-  // =====================================
+    // =====================================
+    // SIGNUP ==============================
+    // =====================================
+    app.post('/signup', function (req, res, next) {
+        passport.authenticate('local-signup', function (err, user, info) {
 
-  app.post('/signup', function (req, res, next) {
-    passport.authenticate('local-signup', function (err, user, info) {
+            if (err) {
+                return next(err);
+            }
 
-      if (err) {
-        return next(err);
-      }
+            if (!user) {
+                return res.send({ok: false, msg: req.flash('signupMessage') });
+            }
 
-      if (!user) {
-        return res.send({ok: false, msg: req.flash('signupMessage') });
-      }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return next(err);
+                }
 
-      req.logIn(user, function (err) {
-        if (err) {
-          return next(err);
-        }
+                return res.send({ok: true, email: user.local.email});
+            });
+        })(req, res, next);
+    });
 
-        return res.send({ok: true, email: user.local.email});
-      });
-    })(req, res, next);
-  });
+    // =====================================
+    // SIGNUP ==============================
+    // =====================================
 
-  // =====================================
-  // SIGNUP ==============================
-  // =====================================
+    app.post('/signin', function (req, res, next) {
+        passport.authenticate('local-login', function (err, user, info) {
 
-  app.post('/signin', function (req, res, next) {
-    passport.authenticate('local-login', function (err, user, info) {
+            if (err) {
+                return next(err);
+            }
 
-      if (err) {
-        return next(err);
-      }
+            if (!user) {
+                return res.send({ok: false, msg: 'no user ' + req.flash('signinMessage') });
+            }
 
-      if (!user) {
-        return res.send({ok: false, msg: 'no user ' + req.flash('signinMessage') });
-      }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return next(err);
+                }
 
-      req.logIn(user, function (err) {
-        if (err) {
-          return next(err);
-        }
+                return res.send({ok: true, email: user.local.email});
+            });
+        })(req, res, next);
+    });
 
-        return res.send({ok: true, email: user.local.email});
-      });
-    })(req, res, next);
-  });
+    // =====================================
+    // LOGOUT ==============================
+    // =====================================
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
-  // =====================================
-  // LOGOUT ==============================
-  // =====================================
-  app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-  });
-
-  /**
-   * Routes
-   */
-  /*
-   app.get('/auth/google', passport.authenticate('google'));
-   app.get('/auth/google/return',
-   passport.authenticate('google', {
-   successRedirect: '/#/profile',
-   failureRedirect: '/#/feed'
-   })
-   );
-   */
+    /**
+     * Routes
+     */
+    /*
+     app.get('/auth/google', passport.authenticate('google'));
+     app.get('/auth/google/return',
+     passport.authenticate('google', {
+     successRedirect: '/#/profile',
+     failureRedirect: '/#/feed'
+     })
+     );
+     */
 
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn (req, res, next) {
-  console.log('is logged in?!');
-  if (!req.isAuthenticated()) {
-    res.redirect('/');
-    return false;
-  }
+    console.log('is logged in?!');
+    if (!req.isAuthenticated()) {
+        res.redirect('/');
+        return false;
+    }
 
-  // if user is authenticated in the session, carry on
-  return next();
+    // if user is authenticated in the session, carry on
+    return next();
 }

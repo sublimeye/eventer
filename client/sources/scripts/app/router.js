@@ -4,8 +4,9 @@
 define(['uiRouter'], function () {
     'use strict';
 
-    return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    return ['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
+        $locationProvider.html5Mode(true);
 
         $stateProvider
             .state('home', {

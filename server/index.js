@@ -5,6 +5,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var config = require('./config/config');
 var network = require('./modules/network-common');
+var router = require('./app/routes');
 var app = express();
 
 /* connecting to database */
@@ -22,13 +23,19 @@ app.configure(function () {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
-
     // handle static resources (images, styles, etc)
     app.use(express.static(__dirname + config.buildDir));
+    app.use(app.router);
+    app.use(redirectUnmatched);
 });
+
+function redirectUnmatched (req, res) {
+    res.redirect('/#' + req.url);
+}
 
 /* Load routing rules */
 require('./app/routes')(app, passport);
+
 
 /* Check if config.port is opened and Launch the server / start listening; */
 network.checkPortIsOpened(config.port, function () {
