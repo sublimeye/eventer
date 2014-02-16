@@ -9,20 +9,20 @@
  *
  * */
 require.config({
-  baseUrl: '/js/app',
-  paths: {
-    angular: '../vendor/angular/angular',
-    uiRouter: '../vendor/angular-ui-router/angular-ui-router',
-    jquery: '../vendor/jquery/jquery',
-    templates: 'templates/templates'
-  },
-  priority: [
-    "angular"
-  ],
-  shim: {
-    angular: {exports: 'angular'},
-    uiRouter: ['angular'],
-    templates: ['angular']
-  },
-  deps: ['bootstrap']
+    baseUrl: '/js/app',
+    paths: {
+        angular: '../vendor/angular/angular',
+        uiRouter: '../vendor/angular-ui-router/angular-ui-router',
+        jquery: '../vendor/jquery/jquery',
+        templates: 'templates/templates'
+    },
+    priority: [
+        "angular"
+    ],
+    shim: {
+        angular: {exports: 'angular'},
+        uiRouter: ['angular'],
+        templates: ['angular']
+    },
+    deps: ['bootstrap']
 });

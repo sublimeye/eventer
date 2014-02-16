@@ -21,9 +21,13 @@ define(function (require) {
                 url: '/profile',
                 templateUrl: 'partials/profile.html'
             })
-            .state('event/edit', {
-                url: '/edit',
+            .state('event/{id}/edit', {
+                url: '/event/{id}/edit',
                 templateUrl: 'partials/event-edit.html'
+            })
+            .state('event/{id}/view', {
+                url: '/event/{id}/view',
+                templateUrl: 'partials/event-view.html'
             })
     }];
 
