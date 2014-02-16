@@ -13,7 +13,7 @@
         <nav class="navbar navbar-default">
             <section class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Eventer</a>
+                    <a class="navbar-brand" ui-sref="home">Eventer</a>
                 </div>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -21,9 +21,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In | Username
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Profile</a></li>
+                            <li><a ui-sref="profile">Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="">Sign Out</a></li>
+                            <li><a ng-click="signOut()">Sign Out</a></li>
                         </ul>
                     </li>
                 </ul>

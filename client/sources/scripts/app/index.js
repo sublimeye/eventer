@@ -13,15 +13,17 @@ require.config({
     paths: {
         angular: '../vendor/angular/angular',
         uiRouter: '../vendor/angular-ui-router/angular-ui-router',
+        uiBootstrap: '../vendor/angular-bootstrap/ui-bootstrap-tpls',
         jquery: '../vendor/jquery/jquery',
         templates: 'templates/templates'
     },
     priority: [
-        "angular"
+        'angular'
     ],
     shim: {
         angular: {exports: 'angular'},
         uiRouter: ['angular'],
+        uiBootstrap: ['angular'],
         templates: ['angular']
     },
     deps: ['bootstrap']
