@@ -10,13 +10,37 @@ module.exports = function (app, passport) {
   app.post('/signup', function (req, res, next) {
     passport.authenticate('local-signup', function (err, user, info) {
 
-      console.log('req.message', req.flash('signupMessage'));
       if (err) {
         return next(err);
       }
 
       if (!user) {
-        return res.send({ok: false, msg: 'not logged in'});
+        return res.send({ok: false, msg: req.flash('signupMessage') });
+      }
+
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+
+        return res.send({ok: true, email: user.local.email});
+      });
+    })(req, res, next);
+  });
+
+  // =====================================
+  // SIGNUP ==============================
+  // =====================================
+
+  app.post('/signin', function (req, res, next) {
+    passport.authenticate('local-login', function (err, user, info) {
+
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+        return res.send({ok: false, msg: 'no user ' + req.flash('signinMessage') });
       }
 
       req.logIn(user, function (err) {

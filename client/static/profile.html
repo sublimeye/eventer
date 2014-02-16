@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <section class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Eventer</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In | Username
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </section>
+    </nav>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+        <h1>Profile</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Sign Out</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+          <div class="well">
+            <h3><span class="fa fa-user"></span> Local</h3>
+
+            <p>
+              <strong>id</strong>: <%= user._id %>
+              <br>
+              <strong>email</strong>: <%= user.local.email %>
+              <br>
+              <strong>password</strong>: <%= user.local.password %>
+            </p>
+
+          </div>
+        </div>
+      </div><!-- // profile info row -->
+
+    </div><!-- main container -->
+  </section>
+
+  <footer></footer>
+
+  <!-- /.modal -->
+
+</body>
+</html>

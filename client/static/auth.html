@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <section class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Eventer</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In | Username <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </section>
+    </nav>
+  </header>
+
+  <section>
+    <div class="container">
+      <h1>Auth</h1>
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#js-w-auth">Login Window</button>
+    </div>
+  </section>
+
+  <footer></footer>
+
+  <div class="modal fade" id="js-w-auth" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+          <h4 class="modal-title">Sign In</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <form class="col-xs-6">
+              <div class="form-group"><input class="form-control" type="text" placeholder="Login"/></div>
+              <div class="form-group"><input class="form-control" type="text" placeholder="Password"/></div>
+              <div class="form-group"><button class="btn btn-default" type="button">Sign In</button></div>
+            </form>
+            <div class="col-xs-6">
+              FB VK GG
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <p><a href="#">Forget password</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <p><a href="#">Sign up</a></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+</body>
+</html>

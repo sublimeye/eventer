@@ -352,7 +352,6 @@ module.exports = function (grunt) {
         tasks: ['sync:fonts']
       },
 
-
       options: {
         debounceDelay: 100,
         atBegin: true,
