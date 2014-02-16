@@ -12,7 +12,8 @@ require.config({
   baseUrl: '/js/app',
   paths: {
     angular: '../vendor/angular/angular',
-    angularRoute: '../vendor/angular-route/angular-route',
+//    angularRoute: '../vendor/angular-route/angular-route',
+    angularRoute: '../vendor/angular-ui-router/',
     jquery: '../vendor/jquery/jquery',
     templates: 'templates/templates'
   },

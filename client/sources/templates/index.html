@@ -7,23 +7,27 @@
 	<link rel="stylesheet" href="/css/index.css"/>
 </head>
 <body>
-	<header>
-    <div>
-      <!--<a href="/auth/google">Sign In with Google</a>-->
-      <br/><br/>
-    </div>
-    <form action="/signin" method="POST">
-      <input type="email" name="email" placeholder="Login (email)"/>
-      <input type="password" name="password" placeholder="Password"/>
-      <button type="submit">Sign In</button>
-    </form>
+  <header>
+    <nav class="navbar navbar-default">
+      <section class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Eventer</a>
+        </div>
 
-    <form action="/signup" method="POST">
-      <input type="email" name="email" placeholder="Login (email)"/>
-      <input type="password" name="password" placeholder="Password"/>
-      <button type="submit">Sign Up</button>
-    </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In | Username
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
 
+      </section>
+    </nav>
   </header>
 
   <section>
@@ -38,7 +42,8 @@
   </section>
 
   <!-- @if NODE_ENV == 'DEVELOPMENT' -->
-  <script src="/js/vendor/requirejs/require.js" data-main="/js/app/index.js"></script>
+  <script src="/js/vendor/requirejs/require.js" data-main="/js/app/ind\
+  ex.js"></script>
   <!-- @endif -->  <!-- @if NODE_ENV == 'PRODUCTION' -->
   <script src="/js/index.min.js"></script>
   <!-- @endif -->
