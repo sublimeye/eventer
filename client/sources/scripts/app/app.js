@@ -4,8 +4,8 @@
 define(function(require, exports, module) {
 	'use strict';
 	var ng = require('angular');
-  var templates = require('templates');
   var router = require('router');
+  var templates = require('templates');
   var app;
 
 	app = ng.module('app', ['ui.router', 'templates-main']);
