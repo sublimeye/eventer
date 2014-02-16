@@ -1,9 +1,8 @@
 /**
  * Created by romo on 1/7/14.
  */
-define(function (require) {
+define(['uiRouter'], function () {
     'use strict';
-    var uiRouter = require('uiRouter');
 
     return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -28,7 +27,7 @@ define(function (require) {
             .state('event/{id}/view', {
                 url: '/event/{id}/view',
                 templateUrl: 'partials/event-view.html'
-            })
+            });
     }];
 
 });
