@@ -5,7 +5,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var config = require('./config/config');
 var network = require('./modules/network-common');
-var router = require('./app/routes');
 var app = express();
 
 /* connecting to database */
@@ -29,6 +28,10 @@ app.configure(function () {
     app.use(redirectUnmatched);
 });
 
+/**
+ * Redirect all unmatched by router requests to the same request.url with hash
+ * to be handled by client-side application
+ */
 function redirectUnmatched (req, res) {
     res.redirect('/#' + req.url);
 }
